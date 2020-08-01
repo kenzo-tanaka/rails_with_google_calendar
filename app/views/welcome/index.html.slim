@@ -1,2 +1,10 @@
 p Googleカレンダーから予定を取得します。
-= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path if user_session.nil?
+- if user_session.nil?
+  = link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path
+- else
+  = link_to 'ログアウト', destroy_user_session_path, method: :delete if user_signed_in?
+
+- if user_signed_in?
+  div
+    a href="" id="display-events" = "今日のイベントを取得(最大取得件数#{Schedule::MAX_RESULTS})"
+    div.events

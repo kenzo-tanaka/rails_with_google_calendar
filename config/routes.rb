@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'welcome#index'
-  resources :tasks do
-    get :fetch_today_events, on: :collection
+  resources :schedules do
+    get :daily, on: :collection
   end
 end

@@ -21,7 +21,7 @@ import $ from "jquery";
 $(document).on("turbolinks:load", function() {
   $('#display-events').on('click', function () {
     $.ajax({
-      url: '/tasks/fetch_today_events',
+      url: '/schedules/daily',
       type: 'GET'
     }).then(function(response){
       $('.events').html(response.events)
