@@ -274,9 +274,6 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
   {
-    access_type: "offline",
-    prompt: "consent",
-    select_account: true,
     scope: 'userinfo.email, calendar'
   }
 
