@@ -1,3 +1,6 @@
+require "google/apis/calendar_v3"
+require "google/api_client/client_secrets.rb"
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

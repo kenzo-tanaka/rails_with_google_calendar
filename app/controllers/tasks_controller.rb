@@ -6,10 +6,8 @@ class TasksController < ApplicationController
 
   def index; end
 
-  # リソースを作成するわけではないので命名変更
-  # TODO: 日別のタスク取得に変更
   # @see https://developers.google.com/calendar/quickstart/ruby
-  def create
+  def fetch_today_events
     client = current_user.get_google_calendar_client
     response = client.list_events(
       CALENDAR_ID,
@@ -19,10 +17,14 @@ class TasksController < ApplicationController
       time_min: Time.zone.today.to_datetime,
       time_max: Time.zone.tomorrow.to_datetime)
 
+    events = ""
     response.items.each do |e|
       start = e.start.date || e.start.date_time
-      puts "#{e.summary}: #{start}"
+      events << "#{e.summary}: #{start}"
+    end
+
+    respond_to do |format|
+      format.json { render json: { events: events } }
     end
   end
-
 end

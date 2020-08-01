@@ -1,4 +1,5 @@
 = link_to 'ログアウト', destroy_user_session_path, method: :delete if user_signed_in?
 
-/ TODO: ajaxで取得して表示する
-p = link_to '今日のイベントを取得', tasks_path, method: :post
+div
+  a href="" id="display-events" 今日のイベントを取得
+  div.events

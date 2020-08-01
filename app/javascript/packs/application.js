@@ -7,6 +7,8 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require('jquery')
+import $ from "jquery";
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -15,3 +17,14 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+$(document).on("turbolinks:load", function() {
+  $('#display-events').on('click', function () {
+    $.ajax({
+      url: '/tasks/fetch_today_events',
+      type: 'GET'
+    }).then(function(response){
+      $('.events').html(response.events)
+    })
+  });
+});
