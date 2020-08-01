@@ -14,14 +14,14 @@ class Schedule < ApplicationRecord
       time_max: Time.zone.tomorrow.to_datetime)
 
     events = ""
-    events << "#{I18n.l Time.zone.now, format: :date}<br>"
+    events << "#{I18n.l Time.zone.now, format: :date}\n"
 
     response.items.each do |e|
       start_time = e.start.date || e.start.date_time
       end_time = e.end.date || e.end.date_time
 
       # AjaxでHTML置換するので<br>を入れている
-      events << "#{I18n.l start_time, format: :time} 〜 #{I18n.l end_time, format: :time}： #{e.summary}<br>"
+      events << "#{I18n.l start_time, format: :time} 〜 #{I18n.l end_time, format: :time}： #{e.summary}\n"
     end
 
     events

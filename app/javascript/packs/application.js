@@ -10,6 +10,8 @@ require("channels")
 require('jquery')
 import $ from "jquery";
 
+import 'bootstrap';
+import '../stylesheets/application'
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -24,7 +26,7 @@ $(document).on("turbolinks:load", function() {
       url: '/schedules/daily',
       type: 'GET'
     }).then(function(response){
-      $('.events').html(response.events)
+      $('.events').val(response.events)
     })
   });
 });

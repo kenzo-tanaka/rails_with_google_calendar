@@ -1,10 +1,14 @@
-p Googleカレンダーから予定を取得します。
-- if user_session.nil?
-  = link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path
-- else
-  = link_to 'ログアウト', destroy_user_session_path, method: :delete if user_signed_in?
+nav.navbar.navbar-light.bg-light.justify-content-between
+  a.navbar-brand.mb-0.h1.text-center Google Schedule Finder
+  = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-outline-dark' if user_signed_in?
 
-- if user_signed_in?
-  div
-    a href="" id="display-events" = "今日のイベントを取得(最大取得件数#{Schedule::MAX_RESULTS})"
-    div.events
+.container.mt-5
+
+  p.text-dark Googleカレンダーから予定を取得します。
+  - if user_session.nil?
+    = link_to 'Google認証', user_google_oauth2_omniauth_authorize_path, class: 'btn btn-danger'
+
+  - if user_signed_in?
+    div
+      a href='' id='display-events' = "今日のイベントを取得(最大取得件数#{Schedule::MAX_RESULTS})"
+      textarea.form-control.events rows="15"
