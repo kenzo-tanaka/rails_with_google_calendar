@@ -1,1 +1,2 @@
-= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path
+p Googleカレンダーから予定を取得します。
+= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path if user_session.nil?
