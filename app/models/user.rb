@@ -4,8 +4,7 @@ require "google/api_client/client_secrets.rb"
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
+  devise :database_authenticatable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   def get_google_calendar_client
     client = Google::Apis::CalendarV3::CalendarService.new

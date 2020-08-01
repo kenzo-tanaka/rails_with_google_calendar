@@ -1,15 +1,9 @@
-nav.navbar.navbar-light.bg-light.justify-content-between
-  a.navbar-brand.mb-0.h1.text-center Google Schedule Finder
-  = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-outline-dark' if user_signed_in?
+p.text-dark Googleカレンダーから予定を取得します。
+- if user_session.nil?
+  = link_to 'Google認証', user_google_oauth2_omniauth_authorize_path, class: 'btn btn-danger'
 
-.container.mt-5
-
-  p.text-dark Googleカレンダーから予定を取得します。
-  - if user_session.nil?
-    = link_to 'Google認証', user_google_oauth2_omniauth_authorize_path, class: 'btn btn-danger'
-
-  - if user_signed_in?
-    div
-      a href='' id='display-events' = "今日のイベントを出力(最大件数: #{Schedule::MAX_RESULTS})"
-      textarea.form-control.events#events rows="10"
-      a href='' id='copy-events' class='btn btn-outline-dark' Copy
+- if user_signed_in?
+  div
+    a href='' id='display-events' = "今日のイベントを出力(最大件数: #{Schedule::MAX_RESULTS})"
+    textarea.form-control.events#events rows="10"
+    a href='' id='copy-events' class='btn btn-outline-dark' Copy

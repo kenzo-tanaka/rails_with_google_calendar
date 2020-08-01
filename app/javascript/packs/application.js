@@ -36,5 +36,6 @@ $(document).on("turbolinks:load", function() {
     copyText.setSelectionRange(0, 99999);
 
     document.execCommand('copy');
+    alert('予定をコピーしました！');
   })
 });
