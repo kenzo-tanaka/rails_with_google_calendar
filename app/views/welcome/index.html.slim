@@ -1,9 +1,10 @@
-p.text-dark Googleカレンダーから予定を取得します。
+p.text-muted Googleカレンダーから予定を取得します。日報作成などにお役立てください。
 - if user_session.nil?
   = link_to 'Google認証', user_google_oauth2_omniauth_authorize_path, class: 'btn btn-danger'
 
 - if user_signed_in?
   div
-    a href='' id='display-events' = "今日のイベントを出力(最大件数: #{Schedule::MAX_RESULTS})"
+    a href='' class='btn btn-primary mb-2' id='display-events' = "今日のイベントを出力(最大件数: #{Schedule::MAX_RESULTS})"
+    a href='' id='copy-events' class='btn btn-outline-dark ml-2 mb-2' 予定をコピー
     textarea.form-control.events#events rows="10"
-    a href='' id='copy-events' class='btn btn-outline-dark' Copy
+    small.ml-2.text-muted.text-right ※ 予定情報はデータベースには保存されません。
