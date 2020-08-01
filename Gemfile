@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'google-api-client', require: 'google/apis/calendar_v3'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
