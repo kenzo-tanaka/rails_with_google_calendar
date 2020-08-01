@@ -22,10 +22,12 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
+gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'google-api-client', require: 'google/apis/calendar_v3'
 gem 'slim-rails'
+gem 'activerecord-session_store'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -45,6 +47,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'pry-rails'
 end
 
 group :test do
