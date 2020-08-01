@@ -10,10 +10,10 @@ class Schedule < ApplicationRecord
       max_results: MAX_RESULTS,
       single_events: true,
       order_by: 'startTime',
-      time_min: Time.zone.today.to_datetime,
-      time_max: Time.zone.tomorrow.to_datetime)
+      time_min: Date.today.in_time_zone('Asia/Tokyo').to_datetime,
+      time_max: Date.tomorrow.in_time_zone('Asia/Tokyo').to_datetime)
 
-    events = ""
+    events = ''
     events << "#{I18n.l Time.zone.now, format: :date}\n"
 
     response.items.each do |e|
