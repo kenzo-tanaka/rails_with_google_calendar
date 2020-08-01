@@ -10,5 +10,6 @@ html
     = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
     = render 'layouts/navbar'
-    .container.mt-5
+    .container.mt-5#main
       = yield
+    = render 'layouts/footer'
