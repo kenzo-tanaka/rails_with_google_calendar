@@ -26,7 +26,15 @@ $(document).on("turbolinks:load", function() {
       url: '/schedules/daily',
       type: 'GET'
     }).then(function(response){
-      $('.events').val(response.events)
+      $('#events').val(response.events)
     })
   });
+
+  $('#copy-events').on('click', function(){
+    let copyText = document.getElementById('events');
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+
+    document.execCommand('copy');
+  })
 });

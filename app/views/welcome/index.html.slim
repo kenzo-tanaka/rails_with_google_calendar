@@ -10,5 +10,6 @@ nav.navbar.navbar-light.bg-light.justify-content-between
 
   - if user_signed_in?
     div
-      a href='' id='display-events' = "今日のイベントを取得(最大取得件数#{Schedule::MAX_RESULTS})"
-      textarea.form-control.events rows="15"
+      a href='' id='display-events' = "今日のイベントを出力(最大件数: #{Schedule::MAX_RESULTS})"
+      textarea.form-control.events#events rows="10"
+      a href='' id='copy-events' class='btn btn-outline-dark' Copy
