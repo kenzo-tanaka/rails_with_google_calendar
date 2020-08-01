@@ -3,6 +3,8 @@ require "google/api_client/client_secrets.rb"
 
 class TasksController < ApplicationController
   CALENDAR_ID = 'primary'
+
+  def index; end
  
   # GET /tasks/new
   def new
