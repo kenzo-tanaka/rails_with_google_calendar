@@ -58,13 +58,13 @@ class TasksController < ApplicationController
       description: task[:description],
       start: {
         date_time: Time.new(task['start_date(1i)'],task['start_date(2i)'],task['start_date(3i)'],task['start_date(4i)'],task['start_date(5i)']).to_datetime.rfc3339,
-        time_zone: "Asia/Kolkata"
+        time_zone: "Asia/Tokyo"
         # date_time: '2019-09-07T09:00:00-07:00',
-        # time_zone: 'Asia/Kolkata',
+        # time_zone: 'Asia/Tokyo',
       },
       end: {
         date_time: Time.new(task['end_date(1i)'],task['end_date(2i)'],task['end_date(3i)'],task['end_date(4i)'],task['end_date(5i)']).to_datetime.rfc3339,
-        time_zone: "Asia/Kolkata"
+        time_zone: "Asia/Tokyo"
       },
       attendees: attendees,
       reminders: {
