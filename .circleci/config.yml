@@ -1,0 +1,74 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/circleci-demo-ruby-rails
+    docker:
+      - image: circleci/ruby:2.6.5-node-browsers
+        environment:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:password@localhost:5432/video_db_test
+      - image: circleci/postgres:11-alpine
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - rails-calendar-{{ checksum "Gemfile.lock" }}
+            - rails-calendar-
+      - run:
+          name: bundlerをinstall
+          command: |
+            gem update --system
+            gem install bundler
+      - run:
+          name: プロジェクトローカルにGemをインストールするよう設定
+          command: bundle config set --local path 'vendor/bundle'
+      - run:
+          name: bundle installを実行
+          command: bundle check || bundle install
+      - run:
+          name: postgresqlをinstall
+          command: sudo apt install -y postgresql-client || true
+      - run:
+          name: Update package list
+          command: sudo apt update
+      - run:
+          name: FFMPEGをinstall
+          command: sudo apt install ffmpeg
+      - save_cache:
+          key: rails-calendar-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - restore_cache:
+          keys:
+            - rails-calendar-yarn-{{ checksum "yarn.lock" }}
+            - rails-calendar-yarn-
+      - run:
+          name: Yarn をinstall
+          command: yarn install --cache-folder ~/.cache/yarn
+      - run:
+          name: Wait for db
+          command: dockerize -wait tcp://127.0.0.1:5432 -timeout 1m
+      - run:
+          name: データベースセットアッップ
+          command: bin/rails db:create db:migrate db:schema:load --trace
+      - run: bundle exec bin/webpack
+  deploy-to-master:
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - run:
+          name: masterブランチを本番にデプロイ
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy-to-master:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
