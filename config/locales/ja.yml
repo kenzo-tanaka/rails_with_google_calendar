@@ -2,7 +2,7 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
-      date: "%Y/%m/%d"
+      date: "%Y/%m/%d(%a)"
       time: "%H:%M"
   devise:
     omniauth_callbacks:

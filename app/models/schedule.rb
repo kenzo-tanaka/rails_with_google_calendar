@@ -36,16 +36,18 @@ class Schedule < ApplicationRecord
 
     # レスポンスを整形
     def self.format_response(res)
+      text = ''
+      res_hash = res.items.group_by { |item| I18n.l item.start.date_time, format: :date }
 
-      # TODO: 修正
-      events = ''
-      events << "#{I18n.l Time.zone.now, format: :date}\n"
-
-      res.items.each do |e|
-        start_time = e.start.date || e.start.date_time
-        end_time = e.end.date || e.end.date_time
-        events << "#{I18n.l start_time, format: :time} 〜 #{I18n.l end_time, format: :time}： #{e.summary}\n"
+      res_hash.each do |start, events|
+        text << "#{start}\n"
+        events.each do |e|
+          start_time = e.start.date || e.start.date_time
+          end_time = e.end.date || e.end.date_time
+          text << "#{I18n.l start_time, format: :time} 〜 #{I18n.l end_time, format: :time}： #{e.summary}\n"
+        end
+        text << "\n"
       end
-      events
+      text
     end
 end
