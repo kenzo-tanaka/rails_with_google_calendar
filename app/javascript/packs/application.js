@@ -27,6 +27,8 @@ $(document).on("turbolinks:load", function() {
       type: 'GET'
     }).then(function(response){
       $('#events').val(response.events)
+    }).fail(function(){
+      alert('予定取得に失敗しました。ログインをし直してください。');
     })
   });
 
