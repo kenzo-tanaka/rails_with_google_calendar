@@ -5,7 +5,9 @@ p.text-muted Googleカレンダーから予定を取得します。日報作成�
 
 - if user_signed_in?
   div
-    a href='' class='btn btn-primary mb-2' id='display-events' = "今日のイベントを出力(最大件数: #{Schedule::MAX_RESULTS})"
+    a href='' class='btn btn-primary mb-2' id='display-events' 今日のイベントを出力
+    a href='' class='btn btn-success ml-2 mb-2' id='display-weekly-events' 1週間の予定を出力
     a href='' id='copy-events' class='btn btn-outline-dark ml-2 mb-2' 予定をコピー
     textarea.form-control.events#events rows="10"
     small.ml-2.text-muted.text-right ※ 予定情報はデータベースには保存されません。
+    small.ml-2.text-muted.text-right ※ 取得できるイベントの最大は#{Schedule::MAX_RESULTS}件です。

@@ -32,6 +32,17 @@ $(document).on("turbolinks:load", function() {
     })
   });
 
+  $('#display-weekly-events').on('click', function () {
+    $.ajax({
+      url: '/schedules/weekly',
+      type: 'GET'
+    }).then(function(response){
+      $('#events').val(response.events)
+    }).fail(function(){
+      alert('予定取得に失敗しました。ログインをし直してください。');
+    })
+  });
+
   $('#copy-events').on('click', function(){
     let copyText = document.getElementById('events');
     copyText.select();

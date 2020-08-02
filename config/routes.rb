@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/terms', to: 'welcome#terms'
   resources :schedules do
     get :daily, on: :collection
+    get :weekly, on: :collection
   end
   resources :users, only: :destroy
 end
