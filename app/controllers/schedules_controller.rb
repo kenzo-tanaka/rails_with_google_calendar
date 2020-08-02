@@ -9,4 +9,12 @@ class SchedulesController < ApplicationController
       format.json { render json: { events: events } }
     end
   end
+
+  def weekly
+    events = Schedule.get_this_week_events(current_user)
+
+    respond_to do |format|
+      format.json { render json: { events: events } }
+    end
+  end
 end
