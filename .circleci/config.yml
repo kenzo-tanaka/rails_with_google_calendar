@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/circleci-demo-ruby-rails
     docker:
-      - image: circleci/ruby:2.6.5-node-browsers
+      - image: circleci/ruby:2.6.3-node-browsers
         environment:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:password@localhost:5432/video_db_test
