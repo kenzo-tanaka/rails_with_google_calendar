@@ -1,4 +1,4 @@
-p = notice
+p.text-success = notice
 p.text-muted Googleカレンダーから予定を取得します。日報作成などにお役立てください。
 - if user_session.nil?
   = link_to 'Google認証', user_google_oauth2_omniauth_authorize_path, class: 'btn btn-danger'
