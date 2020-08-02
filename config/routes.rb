@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :schedules do
     get :daily, on: :collection
   end
+  resources :users, only: :destroy
 end

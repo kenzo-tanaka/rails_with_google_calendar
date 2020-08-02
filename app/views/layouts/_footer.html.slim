@@ -2,4 +2,6 @@ footer.footer
   .container
     span
       = link_to '利用規約', terms_path
+    span.ml-3
+      = link_to '退会する', user_path(current_user), method: :delete if user_signed_in?
 
